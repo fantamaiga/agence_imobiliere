@@ -1,0 +1,225 @@
+@extends('layouts.masteradmin') @section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 bg-success text-white">
+            @if(Session::has('success'))
+            <span>
+                {{ Session::get('success') }}
+            </span>
+            @endif
+        </div>
+    </div>
+    <div class="card md-2">
+        <div class="card-head">
+            <h4 class="card-header bg-secondary text-white text-center">
+                Formulaire d'Annonce
+            </h4>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('annonces.store') }}" method="post">
+                @csrf
+                <div class="row">
+                    <div class="col-4 form-group">
+                        <div class="">
+                            <label for="">Type</label>
+                            <select name="type" id="" class="form-control">
+                                <option value="">Annonce de Vente</option>
+                                <option value="">Annonce de Location</option>
+                                <option value="">Annonce de Colocation</option>
+                                <option value="">Annonce de Bureau</option>
+                                <option value="">Annonce de Vacance</option>
+                                <option value="">
+                                    Annonce de Nouvelle Construction
+                                </option>
+                                <option value="">Annonce de Recherche</option>
+                                <option value="">
+                                    Annonce de Partenaire ou Investisseur
+                                </option>
+                                <option value="">Annonce d'Evènement</option>
+                            </select>
+                            @error('type')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Date de Publication</label>
+                            <input type="date" name="date_publication" id="" class="form-control" />
+                            @error('date_publication')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Date d'Expiration</label>
+                            <input type="date" name="date_expiration" id="" class="form-control" />
+                            @error('date_expiration')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Statut</label>
+                            <select name="statut" id="" class="form-control">
+                                <option value="pub">Publié</option>
+                                <option value="cours">
+                                    En cours de rédaction
+                                </option>
+                                <option value="att">
+                                    En attente de Validation
+                                </option>
+                                <option value="sus">Suspendu</option>
+                                <option value="exp">Expiré</option>
+                                <option value="ret">Retiré</option>
+                                <option value="ven">Vendu</option>
+                                <option value="lou">Loué</option>
+                                <option value="rese">Reservé</option>
+                                <option value="nego">
+                                    En cours de négociation
+                                </option>
+                                <option value="non">Non approuvé</option>
+                            </select>
+                            @error('statut')
+                            {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-4 form-group">
+                        <div class="">
+                            <label for="">prix</label>
+                            <input type="number" name="prix" id="" class="form-control" />
+                            @error('prix')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Devise</label>
+                            <select name="devise" id="" class="form-control">
+                                <option value="GNF">Franc Guinéen(FGN)</option>
+                                <option value="CFA">Franc Cfa(CFA)</option>
+                                <option value="EUR">Euro(£)</option>
+                                <option value="DOL">Dollards($)</option>
+                            </select>
+                            @error('devise')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Nom du Bien</label>
+                           <select name="biens_id" id="" class="form-control">
+                            <option value="">Selectionner</option>
+                            @foreach($biens as $bien)
+                            <option value="{{$bien->id }}">{{ $bien->nom }}</option>
+                            @endforeach
+                            </select>
+                          
+                            @error('biens_id')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <label for="">Nom de l'Agent</label>
+                            <select name="num_agent" id="" class="form-control">
+                                <option value="">Selectionner</option>
+                                @foreach($agents as $agent)
+                                <option value="{{$agent->id }}">{{ $agent->nom }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('agents_id')
+                            {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-4 form-group">
+                       
+
+                        <div class="">
+                            <label for="">Description</label>
+                            <textarea name="description" id="" cols="15" rows="5" class="form-control"></textarea>
+                            @error('description')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
+                        <div class="">
+                            <input type="submit" value="Enrregistrer" name="" id=""
+                                class="form-control mt-4 bg-primary text-white" />
+                        </div>
+
+                        <div class="">
+                            <input type="submit" value="Annuler" name="" id=""
+                                class="form-control mt-4 bg-danger text-white" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="card body mt-4">
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" class="form-control" />
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary form-control">
+                            Rechercher
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary form-control">
+                            Actualiser
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary form-control">
+                            Lister
+                        </button>
+                    </div>
+
+                    <table class="table table-secondary table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Date d'Expiration</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Devise</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($annonces as $annonce)
+                            <tr>
+                                <td>{{$annonce->id}}</td>
+                                <td>{{$annonce->type}}</td>
+                                <td>{{$annonce->date_publication}}</td>
+                                <td>{{$annonce->date_expiration}}</td>
+                                <td>{{$annonce->statut}}</td>
+                                <td>{{$annonce->prix}}</td>
+                                <td>{{$annonce->devise}}</td>
+                                <td>{{$annonce->description}}</td>
+                                <td>{{$annonce->biens_id}}</td>
+                                <td>{{$annonce->agents_id}}</td>
+                                <td>{{$annonce->proprietaires_id}}</td>
+                                <td>
+                                    <a href="{{route('annonces.edit',$annonce->id)}}" class="btn btn-primary btn-sm"><i
+                                            class="ni ni-ruler-pencil"></i></a>
+                                    <a href="" class="btn btn-danger btn-sm"><i class="ni ni-fat-remove"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection @section('params') @endsection
