@@ -12,9 +12,25 @@ class Bien extends Model
         return $this->belongsTo(Annonce::class);
     }
 
-    public function proprietaires()
+    public function proprietaire()
     {
         return $this->hasMany(Proprietaire::class);
     }
+
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
+    }
+
+    public function catalogue()
+    {
+        return $this->hasMany(Catalogue::class);
+    }
+
+    public function contrat()
+    {
+        return $this->hasMany(Contrat::class);
+    }
+    
     use HasFactory;
 }

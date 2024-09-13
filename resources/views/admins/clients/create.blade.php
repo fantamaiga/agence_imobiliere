@@ -11,38 +11,68 @@
           <form action="" method="post">
             @csrf
             <div class="form-group">
-              <label for="Matricule">Matricule</label> 
-              <input type="text" class="form-control">
+              <label for="Matricule">Matricule</label> <br>
+              <input type="text" name="matricule" class="form-control">
+              <span class="text-danger">
+                @error('matricule')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
-              <label for="Nom">Nom</label> 
-              <input type="text" class="form-control">
+              <label for="Nom">Nom</label> <br>
+              <input type="text" name="nom" class="form-control">
+              <span class="text-danger">
+                @error('nom')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
-              <label for="Prenom">Prenom</label> 
-              <input type="text" class="form-control">
+              <label for="Prenom">Prenom</label> <br>
+              <input type="text" name="prenom"  class="form-control">
+              <span class="text-danger">
+                @error('prenom')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
-              <label for="Adresse">Adresse</label> 
-              <input type="text" class="form-control">
+              <label for="Adresse">Adresse</label> <br>
+              <input type="text" name="adresse"  class="form-control">
+              <span class="text-danger">
+                @error('adresse')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
-              <label for="Telephone">Telephone</label> 
-              <input type="tel" class="form-control">
+              <label for="Telephone">Telephone</label> <br>
+              <input type="tel" name="telephone"  class="form-control">
+              <span class="text-danger">
+                @error('telephone')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
-              <label for="Email">Email</label> 
-              <input type="email" class="form-control">
+              <label for="Email">Email</label> <br>
+              <input type="email" name="email"  class="form-control">
+              <span class="text-danger">
+                @error('email')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
               <label for="type">Type de Client</label> 
-            <select name="" id="" class="form-control">
+            <select name="type" id="" class="form-control">
                <option value="">Particulier</option>
                <option value="">Investisseur</option>
                <option value="">Locataire</option>
@@ -52,31 +82,49 @@
                <option value="">Institutionnel</option>
                <option value="">Autre type de client</option>
             </select>
+            <span class="text-danger">
+                @error('type')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
               <label for="Statut">Statut</label> <br>
-              <select name="" id="" class="form-control">
+              <select name="" id="statut" class="form-control">
                         <option value="">Actif</option>
                             <option value="">Innactif</option>
                             <option value="">En prospection</option>
                             <option value="">Autre</option>
                         </select>
+                        <span class="text-danger">
+                @error('statut')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
               <label for="Preférence">Preférence</label> 
-              <textarea name="" col="2" row="2" id="" class="form-control"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="Password">Mot de passe</label> 
-              <input type="password" class="form-control">
+              <textarea name="preference" col="2" row="2" id="" class="form-control"></textarea>
+              <span class="text-danger">
+                @error('preference')
+                  {{$message}}
+                @enderror
+              </span>
             </div>
 
             <div class="form-group">
               <label for="document">Num_Document</label> 
-              <input type="text" class="form-control">
+              <select name="num_document" id="" class="form-control">
+                        <option value="">Selectionner un Document</option>
+                        @foreach($documents as $document)
+                            <option value="{{$document->id}}">{{$document->nom}}</option>
+                        @endforeach
+                    </select>
+                    @error('num_document')
+                    {{ $message }}
+                    @enderror
             </div>
 
             <div class="row">
@@ -126,82 +174,33 @@
       <th scope="col">Type-client</th>
       <th scope="col">Statut</th>
       <th scope="col">Preférence</th>
+      <th scope="col">Actions</th>
       
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+     @foreach($clients as $client)
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <td>{{$client->id}}</td>
+    <td>{{$client->matricule}}</td>
+    <td>{{$client->nom}}</td>
+    <td>{{$client->prenom}}</td>
+    <td>{{$client->adresse}}</td>
+    <td>{{$client->telephone}}</td>
+    <td>{{$client->email}}</td>
+    <td>{{$client->type}}</td>
+    <td>{{$client->statut}}</td>
+    <td>{{$client->preference}}</td>
+    <td>{{$client->documents_id}}</td>
+
+    <td>
+      <a href="{{route('agents.edit',$agent->id)}}" class="btn btn-primary btn-sm"><i class="ni ni-ruler-pencil"></i></a>
+      <a href="" class="btn btn-danger btn-sm"><i class="ni ni-fat-remove"></i></a>
+      </td>
+      
     </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+    @endforeach
   </tbody>
 </table> 
         </div>

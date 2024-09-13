@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Proprietaire;
 use App\Models\Document;
+use App\Models\Avis;
+use App\Models\Bail;
+use App\Models\Contrat;
 use Illuminate\Http\Request;
 
 class ProprietaireController extends Controller
@@ -13,8 +16,11 @@ class ProprietaireController extends Controller
     public function index()
     {
         $proprietaires = Proprietaire::all();
-        $documents = document::all();
-        return view('admins.proprietaires.create',compact('proprietaires', 'documents'));
+        $documents = Document::all();
+        $contrats = Contrat::all();
+        $avis = Avis::all();
+        $bails = Bails::all();
+        return view('admins.proprietaires.create',compact('proprietaires', 'documents', 'avis','bails', 'contrats'));
     }
 
     /**

@@ -1,15 +1,28 @@
 @extends('layouts.masteradmin')
 @section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 bg-success text-white">
+            @if(Session::has('success'))
+            <span>
+                {{ Session::get('success') }}
+            </span>
+            @endif
+        </div>
+    </div>
+
 <div class="card md-2">
     <div class="card-head">
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des contrats</h4>
         </div>
         <div class="card-body">
+        <form action="{{ route('contrats.store') }}" method="post">
+        @csrf
             <div class="row">
                 <div class="col-4 form-group">
                     <div class="">
                         <label for="">Type de contrat</label>
-                        <select name="" id="" class="form-control">
+                        <select name="type" id="" class="form-control">
                             <option value="">Contrat de travail</option>
                             <option value="">Contrat de prêt</option>
                             <option value="">Contrat de partenariat</option>
@@ -18,17 +31,32 @@
                             <option value="">Contrat de gestion locative</option>
                             <option value="">Contrat de syndic de copropriété</option>
                             <option value="">Autre</option>
-                        </select>                  
+                        </select> 
+                        <span class="text-danger">
+                @error('type')
+                  {{$message}}
+                @enderror
+              </span>                 
                       </div>
 
                     <div class="">
                         <label for="">Date de signature</label>
-                        <input type="date" name="" id="" class="form-control">
+                        <input type="date" name="date" id="" class="form-control">
+                        <span class="text-danger">
+                @error('date')
+                  {{$message}}
+                @enderror
+              </span>
                     </div>
                  
                     <div class="">
                         <label for="">Date de début</label>
-                        <input type="date" name="" id="" class="form-control">
+                        <input type="date" name="date_debut" id="" class="form-control">
+                        <span class="text-danger">
+                @error('date_debut')
+                  {{$message}}
+                @enderror
+              </span>
                     </div>
 
                  </div>  
@@ -37,17 +65,40 @@
             
              <div class="">
                         <label for="">Date de fin</label>
-                        <input type="date" name="" id="" class="form-control">
+                        <input type="date" name="date_fin" id="" class="form-control">
+                        <span class="text-danger">
+                @error('date_fin')
+                  {{$message}}
+                @enderror
+              </span>
                     </div>
 
                     <div class="">
                         <label for="">Num_Client</label>
-                        <input type="text" name="" id="" class="form-control">
+                        <select name="num_client" id="" class="form-control">
+                                <option value="">Selectionner</option>
+                                @foreach($clients as $client)
+                                <option value="{{$client->id }}">{{ $client->nom }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('clients_id')
+                            {{ $message }}
+                            @enderror
                     </div>
 
                     <div class="">
                         <label for="">Num_Bien</label>
-                        <input type="text" name="" id="" class="form-control">
+                        <select name="biens_id" id="" class="form-control">
+                            <option value="">Selectionner</option>
+                            @foreach($biens as $bien)
+                            <option value="{{$bien->id }}">{{ $bien->nom }}</option>
+                            @endforeach
+                            </select>
+                          
+                            @error('biens_id')
+                            {{ $message }}
+                            @enderror
                     </div>
 
                 </div>
@@ -56,7 +107,16 @@
             
                     <div class="">
                         <label for="">Num_Propriétaire</label>
-                        <input type="text" name="" id="" class="form-control">
+                        <select name="proprietaires_id" id="" class="form-control">
+                                <option value="">Selectionner</option>
+                                @foreach($proprietaires as $proprietaire)
+                                <option value="{{$proprietaire->id }}">{{ $proprietaire->nom }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('proprietaires_id')
+                            {{ $message }}
+                            @enderror
                     </div>
                     
                     <div class="">
@@ -96,38 +156,28 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($contrats as $contrat)
                 <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                    <td>{{$contrat->id}}</td>
+                    <td>{{$contrat->type}}</td>
+                    <td>{{$contrat->date_signature}}</td>
+                    <td>{{$contrat->date_debut}}</td>
+                    <td>{{$contrat->date_fin}}</td>
+                    <td>{{$contrat->clients_id}}</td>
+                    <td>{{$contrat->biens_id}}</td>
+                    <td>{{$contrat->proprietaires_id}}</td>
+
+                    <td><a href="{{ route('contrats.edit', $contrat->id) }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ route('contrats.destroy', $contrat->id) }}"><i class="fas fa-trash"></i></a></td>
                 </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td ></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">4</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
+                @endforeach
             </tbody>
             </table> 
             </div>
      </div>
 </div>       
-
+</div>
+</div> 
+@endsection
+@section('params')
 @endsection

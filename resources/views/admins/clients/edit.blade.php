@@ -1,24 +1,15 @@
+
 @extends('layouts.masteradmin')
 @section('content')
 <div class="container-fluid">
-<div class="row">
-    <div class="col-12 bg-success text-white">
-        @if(Session::has('success'))
-          <span>
-            {{ Session::get('success') }}
-          </span>
-        @endif
-    </div>
-
-  </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-4">
       <div class="card shadow-lg">
         <div class="card-header bg-secondary text-white text-center">
-          Ajouter un nouveau agent
+          Ajouter un nouveau client
         </div>
         <div class="card-body">
-          <form action="{{route('agents.update', ['id' => $agents->id])}}" method="post">
+          <form action="" method="post">
             @csrf
             <div class="form-group">
               <label for="Matricule">Matricule</label> <br>
@@ -81,67 +72,60 @@
             </div>
 
             <div class="form-group">
-              <label for="Poste">Poste</label> <br>
-              <input type="text" name="poste"  class="form-control">
-              <span class="text-danger">
-                @error('poste')
+              <label for="type">Type de Client</label> 
+            <select name="type" id="" class="form-control">
+               <option value="">Particulier</option>
+               <option value="">Investisseur</option>
+               <option value="">Locataire</option>
+               <option value="">Fidèle</option>
+               <option value="">Etranger</option>
+               <option value="">Locataire</option>
+               <option value="">Institutionnel</option>
+               <option value="">Autre type de client</option>
+            </select>
+            <span class="text-danger">
+                @error('type')
                   {{$message}}
                 @enderror
               </span>
             </div>
-
-            <div class="form-group">
-              <label for="Date Embauche">Date Embauche</label> <br>
-              <input type="date" name="date_embauche"  class="form-control">
-              <span class="text-danger">
-                @error('date_embauche')
-                  {{$message}}
-                @enderror
-              </span>
-            </div>
-
-            <div class="form-group">
-              <label for="Salaire">Salaire</label> <br>
-              <input type="number" name="salaire"  class="form-control">
-              <span class="text-danger">
-                @error('salaire')
-                  {{$message}}
-                @enderror
-              </span>
-            </div>
-
-            <div class="">
-              <label for="">Devise</label>
-                <select name="devise" id="" class="form-control">
-                  <option value="GNF">Franc Guinéen(FGN)</option>
-                  <option value="CFA">Franc Cfa(CFA)</option>
-                  <option value="EUR">Euro(£)</option>
-                  <option value="DOL">Dollards($)</option>
-                  </select>
-                  <span class="text-danger">
-                @error('devise')
-                  {{$message}}
-                @enderror
-              </span>
-              </div>
 
             <div class="form-group">
               <label for="Statut">Statut</label> <br>
-              <select name="statut" id="" class="form-control">
-                        <option value="Act">Actif</option>
-                            <option value="Inn">Innactif</option>
-                            <option value="Attente">En attente de Validation</option>
-                            <option value="Sus">Suspendu</option>
-                            <option value="CON">En congé</option>
-                            <option value="Retr">Retraité</option>
-                            <option value="Lic">Licencié</option>
-                            <option value="For">En Formation</option>
+              <select name="" id="statut" class="form-control">
+                        <option value="">Actif</option>
+                            <option value="">Innactif</option>
+                            <option value="">En prospection</option>
+                            <option value="">Autre</option>
                         </select>
                         <span class="text-danger">
                 @error('statut')
                   {{$message}}
                 @enderror
               </span>
+            </div>
+
+            <div class="form-group">
+              <label for="Preférence">Preférence</label> 
+              <textarea name="preference" col="2" row="2" id="" class="form-control"></textarea>
+              <span class="text-danger">
+                @error('preference')
+                  {{$message}}
+                @enderror
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label for="document">Num_Document</label> 
+              <select name="num_document" id="" class="form-control">
+                        <option value="">Selectionner un Document</option>
+                        @foreach($documents as $document)
+                            <option value="{{$document->id}}">{{$document->nom}}</option>
+                        @endforeach
+                    </select>
+                    @error('num_document')
+                    {{ $message }}
+                    @enderror
             </div>
 
             <div class="row">
@@ -152,8 +136,10 @@
                 <button type="reset" class="btn btn-danger form-control">Annuler</button>
               </div>
             </div>
-            </form>
-            </div>
-</div>
-@endsection
+          </form>
+
+        </div>
+      </div>
+    </div>
+    @endsection
 @section('params')

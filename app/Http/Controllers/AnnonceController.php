@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Annonce;
 use App\Models\Agent;
 use App\Models\Bien;
-use App\Models\Proprietaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,9 +16,8 @@ class AnnonceController extends Controller
     {
         $annonces = Annonce::all();
         $agents = Agent::all();
-        $proprietaires = Proprietaire::all();
         $biens = Bien::all();
-        return view('admins.annonces.create',compact('annonces', 'biens','agents', 'proprietaires'));
+        return view('admins.annonces.create',compact('annonces', 'biens','agents'));
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Bail;
+use App\Models\Client;
+use App\Models\Proprietaire;
+use App\Models\Contrat;
 use Illuminate\Http\Request;
 
 class BailController extends Controller
@@ -12,7 +15,10 @@ class BailController extends Controller
     public function index()
     {
         $bails = Bail::all();
-        return view('admins.bails.create', compact('bails'));
+        $clients = Client::all();
+        $proprietaires = Proprietaire::all();
+        $contrats = Contrat::all();
+        return view('admins.bails.create', compact('bails', 'clients', 'proprietaires', 'contrats'));
     }
 
     /**
@@ -39,7 +45,6 @@ class BailController extends Controller
             'statut'=>'required|string|min:3|max:50',
             'clients_id'=>'required|exists:clients,id',
             'proprietaires_id'=>'required|exists:proprietaires,id',
-            'biens_id'=>'required|exists:biens,id',
             'contrats_id'=>'required|exists:contrats,id',
              
         ]);
@@ -57,7 +62,6 @@ class BailController extends Controller
             $bails->statut = $request->input('statut');
             $bails->clients_id = $request->input('clients_id');
             $bails->proprietaires_id = $request->input('proprietaires_id');
-            $bails->biens_id = $request->input('biens_id');
             $bails->contrats_id = $request->input('contrats_id');
             
             $bails->save();
@@ -98,7 +102,6 @@ class BailController extends Controller
             'statut'=>'required|string|min:3|max:50',
             'clients_id'=>'required|exists:clients,id',
             'proprietaires_id'=>'required|exists:proprietaires,id',
-            'biens_id'=>'required|exists:biens,id',
             'contrats_id'=>'required|exists:contrats,id',
 
         ]);
@@ -113,7 +116,6 @@ class BailController extends Controller
         $bails->statut = $request->input('statut');
         $bails->clients_id = $request->input('clients_id');
         $bails->proprietaires_id = $request->input('proprietaires_id');
-        $bails->biens_id = $request->input('biens_id');
         $bails->contrats_id = $request->input('contrats_id');
 
         $bails->save();

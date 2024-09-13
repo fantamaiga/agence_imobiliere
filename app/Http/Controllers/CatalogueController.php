@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Catalogue;
+use App\Models\Agent;
+use App\Models\Bien;
 use Illuminate\Http\Request;
 
 class CatalogueController extends Controller
@@ -12,7 +14,9 @@ class CatalogueController extends Controller
     public function index()
     {
         $catalogues = Catalogue::all();
-        return view('admins.catalogues.create', compact('catalogues'));
+        $agents = Agent::all();
+        $biens = Bien::all();
+        return view('admins.catalogues.create', compact('catalogues', 'agents', 'biens'));
     }
 
     /**
@@ -67,8 +71,10 @@ class CatalogueController extends Controller
      */
     public function edit(string $id)
     {
-        $catalogue = Catalogue::find($id);
-        return view('catalogues.edit',compact('catalogue'));
+        $catalogues = Catalogue::find($id);
+        $biens = Bien::all();
+        $agents = Agent::all();
+        return view('catalogues.edit',compact('catalogues', 'biens', 'agents'));
     }
 
     /**

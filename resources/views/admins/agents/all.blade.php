@@ -42,88 +42,18 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td></td>
-      <td></td>
+    <td>{{$agent->id}}</td>
+        <td>{{$agent->matricule}}</td>
+        <td>{{$agent->nom}}</td>
+        <td>{{$agent->prenom}}</td>
+        <td>{{$agent->adresse}}</td>
+        <td>{{$agent->telephone}}</td>
+        <td>{{$agent->email}}</td>
+        <td>{{$agent->poste}}</td>
+        <td>{{$agent->date_embauche}}</td>
+        <td>{{$agent->salaire}}</td>
+        <td>{{$agent->devise}}</td>
+        <td>{{$agent->statut}}<</td>
     </tr>
   </tbody>
 </table> 

@@ -11,5 +11,10 @@ class Agent extends Model
         {
             return $this->belongsTo(Annonce::class);
         }
+
+    public function catalogue()
+        {
+            return $this->belongsTo(Catalogue::class);
+        }
     use HasFactory;
 }

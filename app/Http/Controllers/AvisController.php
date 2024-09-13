@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Avis;
+use App\Models\Client;
+use App\Models\Bien;
+use App\Models\Proprietaire;
 use Illuminate\Http\Request;
 
 class AvisController extends Controller
@@ -12,7 +15,10 @@ class AvisController extends Controller
     public function index()
     {
         $avis = Avis::all();
-        return view('admins.avis.create',compact('avis'));
+        $clients = Client::all();
+        $proprietaires = Proprietaire::all();
+        $biens = Bien::all();
+        return view('admins.avis.create',compact('avis', 'biens','clients', 'proprietaires'));
     }
 
     /**

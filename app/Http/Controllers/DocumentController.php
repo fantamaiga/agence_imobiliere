@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Proprietaire;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -14,7 +15,8 @@ class DocumentController extends Controller
     {
         $documents = Document::all();
         $proprietaires = Proprietaire::all();
-        return view('admins.documents.create', compact('documents', 'proprietaires'));
+        $clients = Client::all();
+        return view('admins.documents.create', compact('documents', 'proprietaires', 'clients'));
     }
 
     /**

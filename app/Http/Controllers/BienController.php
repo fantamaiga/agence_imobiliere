@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Bien;
+use App\Models\Avis;
 use App\Models\Proprietaire;
+use App\Models\Catalogue;
+use App\Models\Contrat;
 use Illuminate\Http\Request;
 
 class BienController extends Controller
@@ -14,7 +17,10 @@ class BienController extends Controller
     {
         $biens = Bien::all();
         $proprietaires = Proprietaire::all();
-        return view('admins.biens.create', compact('biens', 'proprietaires'));
+        $avis = Avis::all();
+        $catalogues = Catalogue::all();
+        $contrats = Contrat::all();
+        return view('admins.biens.create', compact('biens', 'proprietaires', 'avis', 'catalogues', 'contrats'));
     }
 
     /**

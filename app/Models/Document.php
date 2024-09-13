@@ -12,5 +12,10 @@ class Document extends Model
         return $this->belongsTo(Proprietaire::class);
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     use HasFactory;
 }

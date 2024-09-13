@@ -11,12 +11,12 @@
         </div>
     </div>
 <div class="card md-2">
-<form action="{{ route('biens.store') }}" method="post">
-@csrf
     <div class="card-head">
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des biens</h4>
         </div>
         <div class="card-body">
+        <form action="{{ route('biens.store') }}" method="post">
+        @csrf
             <div class="row">
                 <div class="col-4 form-group">
                 <div class="">

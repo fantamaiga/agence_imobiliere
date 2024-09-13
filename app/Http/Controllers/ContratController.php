@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contrat;
+use App\Models\Bail;
+use App\Models\Proprietaire;
+use App\Models\Bien;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class ContratController extends Controller
@@ -12,7 +16,11 @@ class ContratController extends Controller
     public function index()
     {
         $contrats = Contrat::all();
-        return view('admins.contrats.create', compact('contrats'));
+        $bails = Bail::all();
+        $biens = Bien::all();
+        $proprietaires = Proprietaire::all();
+        $clients = Client::all();
+        return view('admins.contrats.create', compact('contrats', 'bails', 'biens', 'proprietaires', 'clients'));
     }
 
     /**

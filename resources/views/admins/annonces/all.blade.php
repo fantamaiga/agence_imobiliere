@@ -30,31 +30,15 @@
             </thead>
             <tbody>
                 <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td ></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$annonce->type}}</td>
+                <td>{{$annonce->date_publication}}</td>
+                <td>{{$annonce->date_expiration}}</td>
+                <td>{{$annonce->statut}}</td>
+                <td>{{$annonce->prix}}</td>
+                <td>{{$annonce->devise}}</td>
+                <td>{{$annonce->description}}</td>
+                <td>{{$annonce->biens_id}}</td>
+                <td>{{$annonce->agents_id}}</td>
                 </tr>
             </tbody>
             </table> 

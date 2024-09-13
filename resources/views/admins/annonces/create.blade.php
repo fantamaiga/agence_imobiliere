@@ -1,4 +1,5 @@
-@extends('layouts.masteradmin') @section('content')
+@extends('layouts.masteradmin')
+ @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 bg-success text-white">
@@ -28,13 +29,9 @@
                                 <option value="">Annonce de Colocation</option>
                                 <option value="">Annonce de Bureau</option>
                                 <option value="">Annonce de Vacance</option>
-                                <option value="">
-                                    Annonce de Nouvelle Construction
-                                </option>
+                                <option value="">Annonce de Nouvelle Construction</option>        
                                 <option value="">Annonce de Recherche</option>
-                                <option value="">
-                                    Annonce de Partenaire ou Investisseur
-                                </option>
+                                <option value="">Annonce de Partenaire ou Investisseur</option>
                                 <option value="">Annonce d'Evènement</option>
                             </select>
                             @error('type')
@@ -62,21 +59,15 @@
                             <label for="">Statut</label>
                             <select name="statut" id="" class="form-control">
                                 <option value="pub">Publié</option>
-                                <option value="cours">
-                                    En cours de rédaction
-                                </option>
-                                <option value="att">
-                                    En attente de Validation
-                                </option>
+                                <option value="cours">En cours de rédaction</option>
+                                <option value="att">En attente de Validation</option>
                                 <option value="sus">Suspendu</option>
                                 <option value="exp">Expiré</option>
                                 <option value="ret">Retiré</option>
                                 <option value="ven">Vendu</option>
                                 <option value="lou">Loué</option>
                                 <option value="rese">Reservé</option>
-                                <option value="nego">
-                                    En cours de négociation
-                                </option>
+                                <option value="nego">En cours de négociation</option> 
                                 <option value="non">Non approuvé</option>
                             </select>
                             @error('statut')
@@ -109,7 +100,7 @@
 
                         <div class="">
                             <label for="">Nom du Bien</label>
-                           <select name="biens_id" id="" class="form-control">
+                            <select name="biens_id" id="" class="form-control">
                             <option value="">Selectionner</option>
                             @foreach($biens as $bien)
                             <option value="{{$bien->id }}">{{ $bien->nom }}</option>
@@ -157,8 +148,9 @@
                                 class="form-control mt-4 bg-danger text-white" />
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+          
             <div class="card body mt-4">
                 <div class="row">
                     <div class="col-3">
@@ -207,10 +199,8 @@
                                 <td>{{$annonce->description}}</td>
                                 <td>{{$annonce->biens_id}}</td>
                                 <td>{{$annonce->agents_id}}</td>
-                                <td>{{$annonce->proprietaires_id}}</td>
                                 <td>
-                                    <a href="{{route('annonces.edit',$annonce->id)}}" class="btn btn-primary btn-sm"><i
-                                            class="ni ni-ruler-pencil"></i></a>
+                                    <a href="{{route('annonces.edit',$annonce->id)}}" class="btn btn-primary btn-sm"><i class="ni ni-ruler-pencil"></i></a>
                                     <a href="" class="btn btn-danger btn-sm"><i class="ni ni-fat-remove"></i></a>
                                 </td>
                             </tr>

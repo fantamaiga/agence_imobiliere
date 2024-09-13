@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Agent;
+use App\Models\Catalogue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +15,8 @@ class AgentController extends Controller
     public function index()
     {
         $agents = Agent::all();
-        return view('admins.agents.create',compact('agents'));
+        $catalogues = Catalogue::all();
+        return view('admins.agents.create',compact('agents', 'catalogues'));
     }
 
     public function show ()

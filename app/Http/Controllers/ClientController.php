@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Client;
+use App\Models\Avis;
+use App\Models\Bail;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,7 +15,11 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return view('admins.clients.create',compact('clients'));
+        $avis = Avis::all();
+        $bails =Bail::all();
+        $contrats = Contrat::all();
+        $documents = Document::all();
+        return view('admins.clients.create',compact('clients', 'avis', 'bails', 'documents', 'contrats'));
     }
     public function show ()
     {
