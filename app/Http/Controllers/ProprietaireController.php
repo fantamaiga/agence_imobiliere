@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\Avis;
 use App\Models\Bail;
 use App\Models\Contrat;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class ProprietaireController extends Controller
@@ -19,8 +20,9 @@ class ProprietaireController extends Controller
         $documents = Document::all();
         $contrats = Contrat::all();
         $avis = Avis::all();
-        $bails = Bails::all();
-        return view('admins.proprietaires.create',compact('proprietaires', 'documents', 'avis','bails', 'contrats'));
+        $bails = Bail::all();
+        $notifications = Notifications::all();
+        return view('admins.proprietaires.create',compact('proprietaires','notifications', 'documents', 'avis','bails', 'contrats'));
     }
 
     /**

@@ -106,6 +106,9 @@ class AvisController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $avis = Avis::findOrFail($id);
+        $avis->delete();
+
+        return redirect()->route('avis.index')->with('success', 'supprimé avec succès.'); 
     }
 }

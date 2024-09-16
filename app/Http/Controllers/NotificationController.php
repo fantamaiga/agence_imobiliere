@@ -28,7 +28,27 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation des données entrantes
+        $validation = $request->validate([
+            'type' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
+            'message' => 'required|string',
+            'date_envoie' => 'required|date',
+            'date_expiration' => 'nullable|date|after:date_envoie',
+            'statut' => 'required|string|max:50',
+            'utilisateurs_id' => 'required|exists:utilisateurs,id',
+            'biens_id' => 'required|exists:biens,id',
+            'contrats_id' => 'required|exists:contrats,id',
+            'proprietaires_id' => 'required|exists:proprietaires,id',
+            'clients_id' => 'required|exists:clients,id',
+            'agents_id' => 'required|exists:agents,id',
+        ]);
+
+        // Création de la nouvelle notification
+        Notification::create($validation);
+
+        // Redirection après enregistrement
+        return redirect()->back()->with('success', 'Notification enregistrée avec succès');
     }
 
     /**
@@ -44,7 +64,8 @@ class NotificationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $notifications = Notification::find($id);
+        return view('admins.notifications.edit',compact('notifications'));
     }
 
     /**
@@ -52,7 +73,30 @@ class NotificationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validation des données entrantes
+    $validation = $request->validate([
+        'type' => 'required|string|max:255',
+        'titre' => 'required|string|max:255',
+        'message' => 'required|string',
+        'date_envoie' => 'required|date',
+        'date_expiration' => 'nullable|date|after:date_envoie',
+        'statut' => 'required|string|max:50',
+        'utilisateurs_id' => 'required|exists:utilisateurs,id',
+        'biens_id' => 'required|exists:biens,id',
+        'contrats_id' => 'required|exists:contrats,id',
+        'proprietaires_id' => 'required|exists:proprietaires,id',
+        'clients_id' => 'required|exists:clients,id',
+        'agents_id' => 'required|exists:agents,id',
+    ]);
+
+    // Récupérer la notification par son ID
+    $notification = Notification::findOrFail($id);
+
+    // Mise à jour des données
+    $notification->update($validation);
+
+    // Redirection après modification
+    return redirect()->back()->with('success', 'Notification modifiée avec succès');
     }
 
     /**
@@ -60,6 +104,14 @@ class NotificationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Récupérer la notification par son ID
+        $notification = Notification::findOrFail($id);
+
+        // Supprimer la notification
+        $notification->delete();
+
+        // Redirection après suppression avec un message de succès
+        return redirect()->back()->with('success', 'Notification supprimée avec succès');
     }
 }
+

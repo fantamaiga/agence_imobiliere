@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Avis;
 use App\Models\Bail;
+use App\Models\Notification;
 use App\Models\Document;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class ClientController extends Controller
         $bails =Bail::all();
         $contrats = Contrat::all();
         $documents = Document::all();
-        return view('admins.clients.create',compact('clients', 'avis', 'bails', 'documents', 'contrats'));
+        $notifications = Notification::all();
+        return view('admins.clients.create',compact('clients','notifications', 'avis', 'bails', 'documents', 'contrats'));
     }
     public function show ()
     {
@@ -123,6 +125,9 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client ::findorFail($id);
+        $client->delete();
+
+        return redirect()->route('clients.all')->with('success','Supprimer avec success');
     }
 }

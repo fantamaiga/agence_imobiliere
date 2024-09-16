@@ -158,7 +158,7 @@
                                 @endforeach
                             </select>
 
-                            @error('agents_id')
+                            @error('clients_id')
                             {{ $message }}
                             @enderror
                     </div>

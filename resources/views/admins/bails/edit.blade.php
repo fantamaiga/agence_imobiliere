@@ -15,7 +15,7 @@
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des Bails</h4>
         </div>
         <div class="card-body">
-        <form action="{{ route('bails.store') }}" method="post">
+        <form action="{{route('bails.update', ['id' => $bails->id])}}" method="post">
         @csrf
             <div class="row">
                 <div class="col-4 form-group">                   

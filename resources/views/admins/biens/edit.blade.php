@@ -11,7 +11,7 @@
         </div>
     </div>
 <div class="card md-2">
-<form action="{{ route('biens.store') }}" method="post">
+<form action="{{route('biens.update', ['id' => $biens->id])}}" method="post">
 @csrf
     <div class="card-head">
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des biens</h4>

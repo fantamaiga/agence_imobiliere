@@ -9,7 +9,7 @@
           Ajouter un nouveau client
         </div>
         <div class="card-body">
-          <form action="" method="post">
+          <form action="{{route('clients.update', ['id' => $clients->id])}}" method="post">
             @csrf
             <div class="form-group">
               <label for="Matricule">Matricule</label> <br>

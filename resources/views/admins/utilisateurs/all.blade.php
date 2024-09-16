@@ -37,58 +37,25 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td ></td>
-      <td></td>
-      <td></td>
-      <td ></td>
-      <td></td>
-      <td></td>
+    <td>{{$user->id}}</td>
+        <td>{{$user->matricule}}</td>
+        <td>{{$user->nom}}</td>
+        <td>{{$user->prenom}}</td>
+        <td>{{$user->adresse}}</td>
+        <td>{{$user->telephone}}</td>
+        <td>{{$user->email}}</td>
+        <td>{{$user->role}}</td>
+        <td>
+          <!-- Lien pour modifier -->
+          <a href="{{ route('agents.edit', $agent->id) }}" class="btn btn-primary">Modifier</a>
+
+          <!-- Formulaire pour supprimer -->
+          <form action="{{ route('agents.destroy', $agent->id) }}" method="POST" style="display:inline-block;">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cette notification ?')">Supprimer</button>
+          </form>
+      </td>
     </tr>
   </tbody>
 </table> 

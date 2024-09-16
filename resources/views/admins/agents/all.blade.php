@@ -54,6 +54,17 @@
         <td>{{$agent->salaire}}</td>
         <td>{{$agent->devise}}</td>
         <td>{{$agent->statut}}<</td>
+        <td>
+          <!-- Lien pour modifier -->
+          <a href="{{ route('agents.edit', $agent->id) }}" class="btn btn-primary">Modifier</a>
+
+          <!-- Formulaire pour supprimer -->
+          <form action="{{ route('agents.destroy', $agent->id) }}" method="POST" style="display:inline-block;">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cette notification ?')">Supprimer</button>
+          </form>
+      </td>
     </tr>
   </tbody>
 </table> 

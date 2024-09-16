@@ -17,7 +17,7 @@
             </h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('avis.store') }}" method="post">
+            <form action="{{route('avis.update', ['id' => $avis->id])}}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-4 form-group">

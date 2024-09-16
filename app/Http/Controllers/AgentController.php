@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Agent;
 use App\Models\Catalogue;
+use App\Models\Document;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +18,10 @@ class AgentController extends Controller
     {
         $agents = Agent::all();
         $catalogues = Catalogue::all();
-        return view('admins.agents.create',compact('agents', 'catalogues'));
+        $documents = Document::all();
+        $notifications = Notification::all();
+
+        return view('admins.agents.create',compact('agents','notifications', 'catalogues', 'documents'));
     }
 
     public function show ()
@@ -126,6 +131,9 @@ class AgentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $agent = Agent::findOrFail($id);
+        $agent->delete();
+
+        return redirect()->route('agents.index')->with('success', 'supprimé avec succès.');
     }
 }

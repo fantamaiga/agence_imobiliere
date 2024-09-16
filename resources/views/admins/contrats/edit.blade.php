@@ -16,7 +16,7 @@
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des contrats</h4>
         </div>
         <div class="card-body">
-        <form action="{{ route('contrats.store') }}" method="post">
+        <form action="{{route('contrats.update', ['id' => $contrats->id])}}" method="post">
         @csrf
             <div class="row">
                 <div class="col-4 form-group">

@@ -28,7 +28,7 @@ class ReclamationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -44,7 +44,8 @@ class ReclamationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $reclamations = Reclamation::find($id);
+        return view('admins.reclamations.edit',compact('reclamations'));
     }
 
     /**
@@ -60,6 +61,9 @@ class ReclamationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reclamation ::findorFail($id);
+        $reclamation->delete();
+
+        return redirect()->route('reclamations.index')->with('success','Reclamation supprimée avec succès');
     }
 }

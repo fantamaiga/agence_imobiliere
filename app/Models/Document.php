@@ -17,5 +17,26 @@ class Document extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function bail()
+    {
+        return $this->belongsTo(Bail::class);
+    }
+
+    public function contrat()
+    {
+        return $this->belongsTo(Contrat::class);
+    }
+
+    public function bien()
+    {
+        return $this->belongsTo(Bien::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
+
+
     use HasFactory;
 }

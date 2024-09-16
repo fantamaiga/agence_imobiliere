@@ -21,7 +21,7 @@
           <form action="{{route('users.store')}}" method="post">
             @csrf
             <div class="form-group">
-              <label for="Matricule">Matricule</label> <br>
+              <label for="matricule">Matricule</label> <br>
               <input type="text" name="matricule" class="form-control">
               <span class="text-danger">
                 @error('matricule')

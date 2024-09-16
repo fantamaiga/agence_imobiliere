@@ -5,6 +5,7 @@ use App\Models\Bail;
 use App\Models\Client;
 use App\Models\Proprietaire;
 use App\Models\Contrat;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class BailController extends Controller
@@ -18,7 +19,9 @@ class BailController extends Controller
         $clients = Client::all();
         $proprietaires = Proprietaire::all();
         $contrats = Contrat::all();
-        return view('admins.bails.create', compact('bails', 'clients', 'proprietaires', 'contrats'));
+        $documents = Document::all();
+        $notifications= Notification::all();
+        return view('admins.bails.create', compact('bails', 'clients','notifications', 'proprietaires', 'contrats', 'documents'));
     }
 
     /**
@@ -127,6 +130,9 @@ class BailController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bail = Bail::findOrFail($id);
+        $bail->delete();
+
+        return redirect()->route('bails.index')->with('success', 'supprimé avec succès.');
     }
 }

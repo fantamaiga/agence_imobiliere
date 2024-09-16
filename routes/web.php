@@ -42,6 +42,7 @@ Route::get('/admins/user/show', [UtilisateurController::class,'show'])->name('us
 Route::post('/admins/user/store', [UtilisateurController::class,'store'])->name('users.store');
 Route::get('/admins/user/edit/{id}', [UtilisateurController::class,'edit'])->name('users.edit');
 Route::post('/admins/user/update/{id}', [UtilisateurController::class,'update'])->name('users.update');
+Route::get('/admins/user/destroy/{id}', [UtilisateurController::class,'destroy'])->name('users.destroy');
     
 
 Route::get('/admins/agent', [AgentController::class,'index'])->name('agents.all');
@@ -49,6 +50,7 @@ Route::post('/admins/agent/store', [AgentController::class,'store'])->name('agen
 Route::get('/admins/agent/edit/{id}', [AgentController::class,'edit'])->name('agents.edit');
 Route::get('/admins/agent/show', [AgentController::class,'show'])->name('agents.show');
 Route::post('/admins/agent/update/{id}', [AgentController::class,'update'])->name('agents.update');
+//Route::get('/admins/agent/edit/{id}', [AgentController::class,'edit'])->name('agents.edit');
 
 
 Route::get('/admins/client', [ClientController::class,'index'])->name('clients.all');

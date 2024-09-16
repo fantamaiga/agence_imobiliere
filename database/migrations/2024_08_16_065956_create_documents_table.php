@@ -31,6 +31,10 @@ return new class extends Migration
             $table->unsignedBigInteger('proprietaires_id')->constrained('proprietaires')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('clients_id')->constrained('clients')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('agents_id')->constrained('agents')->cascadeOnUpdate()->cascadeOnDelete();
+          //  $table->softDeletes(); // pour supprimer les données sans supprimer les enregistrements liés dans d'autres tables.
+           // $table->rememberToken(); // pour générer un jeton d'authentification à chaque utilisateur.
+            $table->unsignedBigInteger('bails_id')->constrained('bails')->cascadeOnUpdate()->cascadeOnDelete(); // pour lier le document à une notification.
+
             $table->timestamps();
         });
     }

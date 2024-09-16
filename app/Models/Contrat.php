@@ -26,6 +26,16 @@ class Contrat extends Model
     {
         return $this->belongsTo(Bien::class);
     }
+
+    public function document()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
     
     use HasFactory;
 }

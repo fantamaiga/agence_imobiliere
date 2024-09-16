@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proprietaire extends Model
 {
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
+    
     public function annonce()
     {
         return $this->belongsTo(Annonce::class);
@@ -31,6 +36,6 @@ class Proprietaire extends Model
     {
         return $this->hasMany(Contrat::class);
     }
-
+    
     use HasFactory;
 }

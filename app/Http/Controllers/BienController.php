@@ -6,6 +6,8 @@ use App\Models\Avis;
 use App\Models\Proprietaire;
 use App\Models\Catalogue;
 use App\Models\Contrat;
+use App\Models\Document;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class BienController extends Controller
@@ -20,7 +22,10 @@ class BienController extends Controller
         $avis = Avis::all();
         $catalogues = Catalogue::all();
         $contrats = Contrat::all();
-        return view('admins.biens.create', compact('biens', 'proprietaires', 'avis', 'catalogues', 'contrats'));
+        $documents = Document::all();
+        $notifications = Notification::all();
+        return view('admins.biens.index', compact('biens', 'proprietaires','notifications', 'avis', 'catalogues', 'contrats', 'documents'));
+        //return view('admins.biens.create', compact('biens', 'proprietaires', 'avis', 'catalogues', 'contrats'));
     }
 
     /**
@@ -186,6 +191,9 @@ class BienController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bien = Bien::findorFail($id);
+        $bien->delete();
+        
+        return redirect()->route('biens.index')->with('success', 'Bien supprimé avec succès.');
     }
 }

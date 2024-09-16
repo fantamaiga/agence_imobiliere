@@ -32,5 +32,14 @@ class Bien extends Model
         return $this->hasMany(Contrat::class);
     }
     
+    public function document()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
     use HasFactory;
 }

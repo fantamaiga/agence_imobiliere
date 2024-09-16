@@ -108,6 +108,9 @@ class CatalogueController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $catalogue = Catalogue::findorFail($id);
+        $catalogue->delete();
+
+        return redirect()->route('catalogues.all')->with('success','Supprimer avec success');
     }
 }

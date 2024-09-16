@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Proprietaire;
 use App\Models\Client;
+use App\Models\Bien;
+use App\Models\Contrat;
+use App\Models\Agent;
+use App\Models\Bail;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -16,7 +20,11 @@ class DocumentController extends Controller
         $documents = Document::all();
         $proprietaires = Proprietaire::all();
         $clients = Client::all();
-        return view('admins.documents.create', compact('documents', 'proprietaires', 'clients'));
+        $biens = Bien::all();
+        $contrats = Contrat::all();
+        $agents = Agent::all();
+        $bails = Bail::all();
+        return view('admins.documents.create', compact('documents', 'proprietaires', 'clients', 'biens', 'contrats', 'agents', 'bails'));
     }
 
     /**
@@ -51,6 +59,7 @@ class DocumentController extends Controller
         'proprietaires_id' => 'nullable|integer|exists:proprietaires,id', 
         'clients_id' => 'nullable|integer|exists:clients,id', 
         'agents_id' => 'nullable|integer|exists:agents,id', 
+        'bails_id' => 'nullable|integer|exists:bails,id', 
 ]);
              
         if($validation->fails()){
@@ -75,6 +84,7 @@ class DocumentController extends Controller
         $document->proprietaires_id = $request->proprietaires_id;
         $document->clients_id = $request->clients_id;
         $document->agents_id = $request->agents_id;
+        $document->bails_id = $request->bails_id;
 
         // Sauvegarder les modifications
         $document->save();
@@ -128,7 +138,8 @@ class DocumentController extends Controller
             'biens_id' => 'nullable|integer|exists:biens,id',
             'proprietaires_id' => 'nullable|integer|exists:proprietaires,id', 
             'clients_id' => 'nullable|integer|exists:clients,id', 
-            'agents_id' => 'nullable|integer|exists:agents,id', 
+            'agents_id' => 'nullable|integer|exists:agents,id',
+            'bails_id' => 'nullable|integer|exists:bails,id',
  
          ]);
             // Mise à jour des champs du document avec les valeurs obtenues de la requête
@@ -150,6 +161,7 @@ class DocumentController extends Controller
         $document->proprietaires_id = $request->proprietaires_id;
         $document->clients_id = $request->clients_id;
         $document->agents_id = $request->agents_id;
+        $document->bails_id = $request->bails_id;
 
         // Sauvegarder les modifications
         $document->save();

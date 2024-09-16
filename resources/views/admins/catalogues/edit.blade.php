@@ -15,7 +15,7 @@
             <h4 class="card-header bg-secondary text-white text-center">Formulaire des Catalogues</h4>
         </div>
         <div class="card-body">
-        <form action="{{ route('catalogues.store') }}" method="post">
+        <form action="{{route('catalogues.update', ['id' => $catalogues->id])}}" method="post">
         @csrf
             <div class="row">
                 <div class="col-6 form-group">

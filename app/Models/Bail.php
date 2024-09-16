@@ -21,5 +21,10 @@ class Bail extends Model
     {
         return $this->hasMany(Contrat::class);
     }
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
     use HasFactory;
 }

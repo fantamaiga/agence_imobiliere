@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\Validator;
 
 class UtilisateurController extends Controller
@@ -14,7 +15,8 @@ class UtilisateurController extends Controller
     public function index()
     {
       $users = User::all();
-      return view('admins.utilisateurs.create',compact('users'));
+      $messages = Message::all();
+      return view('admins.utilisateurs.create',compact('users','messages'));
     }
 
     public function show ()
@@ -112,6 +114,9 @@ class UtilisateurController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $utilisateur = Utilisateur::findOrFail($id);
+        $utilisateur->delete();
+
+        return redirect()->route('utilisateurs.all')->with('success', 'Message supprimé avec succès.');
     }
 }

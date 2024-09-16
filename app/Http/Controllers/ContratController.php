@@ -6,6 +6,8 @@ use App\Models\Bail;
 use App\Models\Proprietaire;
 use App\Models\Bien;
 use App\Models\Client;
+use App\Models\Document;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class ContratController extends Controller
@@ -20,7 +22,9 @@ class ContratController extends Controller
         $biens = Bien::all();
         $proprietaires = Proprietaire::all();
         $clients = Client::all();
-        return view('admins.contrats.create', compact('contrats', 'bails', 'biens', 'proprietaires', 'clients'));
+        $documents = Document::all();
+        $notifications = Notification::all();
+        return view('admins.contrats.index', compact('contrats','notifications', 'bails', 'biens', 'proprietaires', 'clients', 'documents'));
     }
 
     /**
@@ -112,6 +116,9 @@ class ContratController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $contrat = Contrat::findorFail($id);
+        $contrat->delete();
+
+        return redirect()->route('contrats.index')->with('success','Supprimer avec success');
     }
 }
